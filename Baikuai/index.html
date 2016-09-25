@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>白块</title>
+		<script src="js/block.js"></script>
+		<style>
+			.whiteBlock{/*这个叫类选择器"class"*/
+				width: 100px;
+				height: 100px;
+				display: inline-block;
+				background-color: white;/*或者#FFF或者#FFFFFF*/
+				border: 1px solid black;
+				box-sizing: border-box;/*计算宽度时把边界的宽度也算上*/
+			}
+			.blackBlock{
+				width: 100px;
+				height: 100px;
+				display: inline-block;
+				background-color: black;/*或者#FFF或者#FFFFFF*/
+				border: 1px solid white;
+				box-sizing: border-box;
+			}
+			.container{
+				width: 400px;
+				height: 600px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container"></div><br/>
+		<input type="button" value="Reset" onClick="Game.ResetGame()"/>
+	</body>
+	<script>
+		var Game=new WhiteBlock(document.querySelector(".container"));
+	</script>
+</html>
