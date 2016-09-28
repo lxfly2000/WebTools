@@ -1,5 +1,5 @@
-# lxfly2000.github.io
+# [lxfly2000.github.io](https://lxfly2000.github.io)
 My pages.
 
 
-TODO: JS 读取 MIDI;
+TODO: JS 播放 MIDI 文件

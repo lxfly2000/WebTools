@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>MIDI</title>
+		<script src="midi.js"></script>
+	</head>
+	<body>
+		<p>Web MIDI</p>
+		<p>
+		<input type="button" value="中音C" onclick="o.onSendMiddleC()"/>
+		<input type="button" value="中音D" onclick="o.onSendMiddleD()"/>
+		<input type="button" value="中音E" onclick="o.onSendMiddleE()"/>
+		<input type="button" value="中音F" onclick="o.onSendMiddleF()"/>
+		<input type="button" value="中音G" onclick="o.onSendMiddleG()"/>
+		<input type="button" value="中音A" onclick="o.onSendMiddleA()"/>
+		<input type="button" value="中音B" onclick="o.onSendMiddleB()"/>
+		</p>
+		<input type="button" value="关闭MIDI" onclick="o.onCloseMidi()"/>
+	</body>
+	<script>
+		var o=new MidiPlayer();
+	</script>
+</html>
