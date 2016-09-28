@@ -80,9 +80,6 @@
 	
 	Model.prototype.onMIDISuccess=function(midiAccess){
 		o.midi=midiAccess;
-		if(this.midi!=null){
-			alert("MIDI加载成功。");
-		}
 	}
 	
 	Model.prototype.onMIDIFailure=function(msg){
