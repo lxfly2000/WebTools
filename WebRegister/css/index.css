@@ -1,0 +1,45 @@
+#regist{/*选择 id 为 regist 的节点，与[id="regist"]相同*/
+	width: 600px;
+	background-color: #f8fdff;
+	padding: 10px;/*内边距，上右下左*/
+	margin: auto;/*外边距*/
+}
+
+#regist .title{/*选择 class 为 title 的节点，如果不是设置全局属性尽量不要省略 id*/
+	font-size: 20px;
+	border-bottom: 1px inset;
+	padding: 10px;
+}
+
+#regist .row{
+	padding: 10px;
+}
+
+#regist .row > *{/*选择所有子节点*/
+	display: inline-block;
+}
+
+#regist .row .fieldlable{
+	width: 100px;
+	text-align: right;
+}
+
+#regist .row .field{
+	width: 300px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #999;
+}
+
+#regist .row .tip{
+	color: red;
+	font-size: 12px;
+}
+
+#regist .row [type="radio"]{/*选择类别为radio的节点*/
+	margin-left: 30px;
+}
+
+#regist .row select{/*选择所有标签为select的节点*/
+	width: 95px;
+}
