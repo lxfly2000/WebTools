@@ -11,17 +11,17 @@
 			<div class="title">注册账号</div>
 			<div class="row">
 				<div class="fieldlable">昵称</div>
-				<input type="text" class="field" name="nickName"/>
+				<input type="text" class="field" name="nickName" check="empty"/><!--check是自己加的属性-->
 				<div class="tip">不能为空</div>
 			</div>
 			<div class="row">
 				<div class="fieldlable">密码</div>
-				<input type="text" class="field" name="pwd"/>
+				<input type="text" class="field" name="pwd" check="empty"/>
 				<div class="tip">不能为空</div>
 			</div>
 			<div class="row">
 				<div class="fieldlable">确认密码</div>
-				<input type="text" class="field" name="pwd2"/>
+				<input type="text" class="field" name="pwd2" check="empty"/>
 				<div class="tip">不能为空</div>
 			</div>
 			<div class="row">
@@ -43,7 +43,7 @@
 			</div>
 			<div class="row">
 				<div class="fieldlable">手机号码</div>
-				<input type="text" class="field" name="phoneNum"/>
+				<input type="text" class="field" name="phoneNum" check="empty|mobile"/>
 				<div class="tip">不能为空</div>
 			</div>
 		</form>
