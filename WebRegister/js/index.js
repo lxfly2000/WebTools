@@ -1,47 +1,70 @@
 (function(){
 	var Model=function(){
-		this.initDate();
-		this.initArea();
+		var me=this;
+		me.initDate();
+		me.initArea();
 		
-		var texts=document.querySelectorAll("[type='text']");
-		texts.forEach(function(t){
+		me.texts=document.querySelectorAll("[type='text']");
+		me.tips=document.querySelectorAll(".tip");
+		for(var i=0;i<me.texts.length;i++){
+			me.texts[i].i_index=i;
+		}
+		me.texts.forEach(function(t){
 			t.addEventListener("blur",function(){
-				var retStr=this.checkValid(t.plusGetAttribute("check"),t.value);
+				var retStr=me.checkValid(t.getAttribute("check"),t.value);
 				if(retStr!=null){
-					t.nextSibling.nextSibling.innerHTML=retStr;
+					me.tips[t.i_index].innerHTML=retStr;
+					me.correct[t.i_index]=false;
 				}else{
-					t.nextSibling.nextSibling.innerHTML="";
+					me.tips[t.i_index].innerHTML="";
+					me.correct[t.i_index]=true;
 				}
+			});
+		});
+		me.correct=new Array(me.texts.length);
+		for(var i=0;i<me.correct.length;i++)me.correct[i]=false;
+		
+		document.querySelector("#submitbutton").addEventListener("click",function(){
+			me.submit();
+		});
+		me.tagName=document.querySelector("[name='nickName']");
+		me.tagPassword=document.querySelector("[name='pwd']");
+		me.tagPhone=document.querySelector("[name='phoneNum']");
+		me.divSex=document.querySelector("#sexgroup");
+		
+		document.querySelectorAll("[name='sex']").forEach(function(r){
+			r.addEventListener("click",function(){
+				me.divSex.value=r.value;
 			});
 		});
 	}
 	
 	Model.prototype.initDate=function(){
-		var tagYear=document.querySelector("[name='birthYear']");
-		var tagMonth=document.querySelector("[name='birthMonth']");
-		var tagDate=document.querySelector("[name='birthDay']");
+		var me=this;
+		me.tagYear=document.querySelector("[name='birthYear']");
+		me.tagMonth=document.querySelector("[name='birthMonth']");
+		me.tagDate=document.querySelector("[name='birthDay']");
 		
 		var shtml='';
 		for(var i=1990;i<2100;i++){
 			shtml+="<option value='"+i+"'>"+i+"年</option>";
 		}
-		tagYear.innerHTML=shtml;
+		me.tagYear.innerHTML=shtml;
 		shtml='';
 		for(var i=1;i<=12;i++){
 			shtml+="<option value='"+i+"'>"+i+"月</option>";
 		}
-		tagMonth.innerHTML=shtml;
-		tagYear.addEventListener("change",function(){
+		me.tagMonth.innerHTML=shtml;
+		me.tagYear.addEventListener("change",function(){
 			updateDate();
 		});
-		tagMonth.addEventListener("change",function(){
+		me.tagMonth.addEventListener("change",function(){
 			updateDate();
 		});
-		updateCity();
 		
 		function updateDate(){
-			var vy=parseInt(tagYear.value);
-			var vm=parseInt(tagMonth.value);
+			var vy=parseInt(me.tagYear.value);
+			var vm=parseInt(me.tagMonth.value);
 			var days=31;
 			
 			if(vm==2){
@@ -54,15 +77,12 @@
 			for(var i=1;i<=days;i++){
 				shtml+="<option value='"+i+"'>"+i+"日</option>";
 			}
-			tagDate.innerHTML=shtml;
-		}
-		
-		function updateCity(){
-			
+			me.tagDate.innerHTML=shtml;
 		}
 	}
 	
 	Model.prototype.initArea=function(){
+		var me=this;
 		var countries=['中国','美国','法国','德国','英国','俄罗斯'];
 		var provinces={
 			'中国':['北京','上海','四川','重庆'],
@@ -79,40 +99,40 @@
 			'重庆':['重庆']
 		};
 		
-		var tagCountry=document.querySelector("[name='country']");
-		var tagProvince=document.querySelector("[name='province']");
-		var tagCity=document.querySelector("[name='city']");
+		me.tagCountry=document.querySelector("[name='country']");
+		me.tagProvince=document.querySelector("[name='province']");
+		me.tagCity=document.querySelector("[name='city']");
 		
 		var shtml="";
 		for(var i=0;i<countries.length;i++){
 			shtml+="<option value='"+countries[i]+"'>"+countries[i]+"</option>";
 		}
-		tagCountry.innerHTML=shtml;
+		me.tagCountry.innerHTML=shtml;
 		
-		tagCountry.addEventListener("change",function(){
-			var vc=tagCountry.value;
-			tagProvince.innerHTML="";
-			tagCity.innerHTML="";
+		me.tagCountry.addEventListener("change",function(){
+			var vc=me.tagCountry.value;
+			me.tagProvince.innerHTML="";
+			me.tagCity.innerHTML="";
 			var shtml_province="";
 			var dataset=provinces[vc];
 			if(dataset!=undefined){
 				for(var i=0;i<dataset.length;i++){
 					shtml_province+="<option value='"+dataset[i]+"'>"+dataset[i]+"</option>";
 				}
-				tagProvince.innerHTML=shtml_province;
+				me.tagProvince.innerHTML=shtml_province;
 			}
 		});
 		
-		tagProvince.addEventListener("change",function(){
-			var vc=tagProvince.value;
-			tagCity.innerHTML="";
+		me.tagProvince.addEventListener("change",function(){
+			var vc=me.tagProvince.value;
+			me.tagCity.innerHTML="";
 			var shtml_city="";
 			var dataset=cities[vc];
 			if(dataset!=undefined){
 				for(var i=0;i<dataset.length;i++){
 					shtml_city+="<option value='"+dataset[i]+"'>"+dataset[i]+"</option>";
 				}
-				tagCity.innerHTML=shtml_city;
+				me.tagCity.innerHTML=shtml_city;
 			}
 		});
 	}
@@ -125,20 +145,41 @@
 			mobile:function(){
 				var reg=new RegExp(/^1[3578]\d{9}$/);//正则表达式，验证手机号
 				return reg.test(val);
+			},
+			repw:function(){
+				return val==document.querySelector("[name='pwd']").value;
 			}
 		}
 		var msgObj={
 			empty:"不能为空",
-			mobile:"手机号错误"
+			mobile:"手机号错误",
+			repw:"密码不一致"
 		};
 		
 		var arg=typeStr.split("|");
 		for(var i=0;i<arg.length;i++){
-			if(typeof validObj[v]=="function"){
-				if(validObj[v]()==false)return msgObj[v];
+			if(typeof validObj[arg[i]]=="function"){
+				if(validObj[arg[i]]()==false)return msgObj[arg[i]];
 			}
 		}
 		return null;
+	}
+	
+	Model.prototype.submit=function(){
+		var me=this;
+		for(var i=0;i<me.texts.length;i++){
+			if(me.correct[i]==false){
+				alert("你输入的信息有错。");
+				return;
+			}
+		}
+		var str="昵称："+me.tagName.value+"\n密码："+me.tagPassword.value+"\n手机号码："+me.tagPhone.value;
+		str+="\n性别："+me.divSex.value;
+		str+="\n生日："+me.tagYear.options[me.tagYear.selectedIndex].text+me.tagMonth.options[me.tagMonth.selectedIndex].text+me.tagDate.options[me.tagDate.selectedIndex].text;
+		str+="\n地址："+me.tagCountry.options[me.tagCountry.selectedIndex].text;
+		if(me.tagProvince.selectedIndex!=-1)str+=","+me.tagProvince.options[me.tagProvince.selectedIndex].text;
+		if(me.tagCity.selectedIndex!=-1)str+=","+me.tagCity.options[me.tagCity.selectedIndex].text;
+		alert(str);
 	}
 	
 	window.qqregist=Model;

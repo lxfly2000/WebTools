@@ -1,8 +1,13 @@
-#regist{/*选择 id 为 regist 的节点，与[id="regist"]相同*/
+.formparent{
 	width: 600px;
+	margin: auto;/*外边距*/
+	text-align: center;
+}
+
+#regist{/*选择 id 为 regist 的节点，与[id="regist"]相同*/
 	background-color: #f8fdff;
 	padding: 10px;/*内边距，上右下左*/
-	margin: auto;/*外边距*/
+	text-align: left;
 }
 
 #regist .title{/*选择 class 为 title 的节点，如果不是设置全局属性尽量不要省略 id*/
@@ -42,4 +47,11 @@
 
 #regist .row select{/*选择所有标签为select的节点*/
 	width: 95px;
+}
+
+#submitbutton{
+	width: 100px;
+	height: 40px;
+	font-size: 120%;
+	margin: 20px auto;
 }

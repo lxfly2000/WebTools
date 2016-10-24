@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="js/index.js" ></script>
 	</head>
 	<body>
+	<div class="formparent">
 		<form id="regist">
 			<div class="title">注册账号</div>
 			<div class="row">
@@ -21,13 +22,15 @@
 			</div>
 			<div class="row">
 				<div class="fieldlable">确认密码</div>
-				<input type="text" class="field" name="pwd2" check="empty"/>
+				<input type="text" class="field" name="pwd2" check="empty|repw"/>
 				<div class="tip">不能为空</div>
 			</div>
 			<div class="row">
 				<div class="fieldlable">性别</div>
-				<input type="radio" name="sex" checked="checked"/>男
-				<input type="radio" name="sex"/>女
+				<div id="sexgroup">
+					<input type="radio" name="sex" checked="checked" value="男"/>男
+					<input type="radio" name="sex" value="女"/>女
+				</div>
 			</div>
 			<div class="row">
 				<div class="fieldlable">生日</div>
@@ -47,6 +50,8 @@
 				<div class="tip">不能为空</div>
 			</div>
 		</form>
+		<input id="submitbutton" type="button" value="提交"/>
+	</div>
 	</body>
 	<script>
 		new qqregist();
