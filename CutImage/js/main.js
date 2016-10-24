@@ -7,7 +7,6 @@
 		me.startX=0;
 		me.startY=0;
 		me.initEvent();
-		console.log("init\n");
 	}
 	
 	Model.prototype.bigger=function(){
@@ -24,30 +23,25 @@
 	
 	Model.prototype.updTransform=function(){
 		var me=this;
-		me.image.style.transform="scale("+me.scale+","+me.scale+") translate("+me.startX+","+me.startY+")";
-		console.log("upd\n");
+		me.image.style.transform="scale("+me.scale+","+me.scale+") translate("+me.startX+"px,"+me.startY+"px)";//CSS3属性
 	}
 	
 	Model.prototype.initEvent=function(){
 		var me=this;
 		me.container.addEventListener("mousedown",function(e){
 			me.oldPoint={x:e.clientX,y:e.clientY};
-			console.log("down\n");
 		});
 		me.container.addEventListener("mouseup",function(e){
 			me.oldPoint=undefined;
-			console.log("up\n");
 		});
 		me.container.addEventListener("mousemove",function(e){
 			if(me.oldPoint==undefined){
-				console.log("no oldPoint\n");
 				return;
 			}
 			me.startX+=e.clientX-me.oldPoint.x;
 			me.startY+=e.clientY-me.oldPoint.y;
 			me.updTransform();
 			me.oldPoint={x:e.clientX,y:e.clientY};
-			console.log("move\n");
 		});
 	}
 	
