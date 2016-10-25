@@ -4,7 +4,7 @@
 		me.initDate();
 		me.initArea();
 		
-		me.texts=document.querySelectorAll("[type='text']");
+		me.texts=document.querySelectorAll("[type='text'],[type='password']");
 		me.tips=document.querySelectorAll(".tip");
 		for(var i=0;i<me.texts.length;i++){
 			me.texts[i].i_index=i;
@@ -175,7 +175,8 @@
 		}
 		var str="昵称："+me.tagName.value+"\n密码："+me.tagPassword.value+"\n手机号码："+me.tagPhone.value;
 		str+="\n性别："+me.divSex.value;
-		str+="\n生日："+me.tagYear.options[me.tagYear.selectedIndex].text+me.tagMonth.options[me.tagMonth.selectedIndex].text+me.tagDate.options[me.tagDate.selectedIndex].text;
+		str+="\n生日："+me.tagYear.options[me.tagYear.selectedIndex].text+me.tagMonth.options[me.tagMonth.selectedIndex].text;
+		if(me.tagDate.selectedIndex!=-1)str+=me.tagDate.options[me.tagDate.selectedIndex].text;
 		str+="\n地址："+me.tagCountry.options[me.tagCountry.selectedIndex].text;
 		if(me.tagProvince.selectedIndex!=-1)str+=","+me.tagProvince.options[me.tagProvince.selectedIndex].text;
 		if(me.tagCity.selectedIndex!=-1)str+=","+me.tagCity.options[me.tagCity.selectedIndex].text;
