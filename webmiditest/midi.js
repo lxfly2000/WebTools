@@ -80,6 +80,11 @@
 	
 	Model.prototype.onMIDISuccess=function(midiAccess){
 		o.midi=midiAccess;
+		if(midiAccess.outputs.get(0)==undefined){
+			Model.prototype.sendNote=function(){};
+			Model.prototype.onKeyNote=function(){};
+			alert("Sorry, 这个版本的 Chrome 似乎出了点问题，导致 MIDI 消息无法发出。");
+		}
 	}
 	
 	Model.prototype.onMIDIFailure=function(msg){
