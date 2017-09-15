@@ -80,7 +80,11 @@
 	
 	Model.prototype.onMIDISuccess=function(midiAccess){
 		o.midi=midiAccess;
-		if(midiAccess.outputs.get(0)==undefined){
+		for(o.midiport of o.midi.outputs){
+			if(o.midiport!=undefined)
+				break;
+		}
+		if(midiAccess.outputs.get(o.midiport[0])==undefined){
 			Model.prototype.sendNote=function(){};
 			Model.prototype.onKeyNote=function(){};
 			alert("Sorry, 这个版本的 Chrome 似乎出了点问题，导致 MIDI 消息无法发出。");
@@ -92,7 +96,7 @@
 	}
 	
 	Model.prototype.sendNote=function( midiAccess, portID, note ) {// note on, middle C, full velocity
-		var output = midiAccess.outputs.get(portID);
+		var output = midiAccess.outputs.get(o.midiport[portID]);
 		output.send( [0x90, note, 0x7f] );  //omitting the timestamp means send immediately.
         
 		// Inlined array creation- note off, middle C,
@@ -101,7 +105,7 @@
 	}
 	
 	Model.prototype.onKeyNote=function(msgtype, key, velocity){
-		o.midi.outputs.get(0).send([msgtype,key,velocity]);
+		o.midi.outputs.get(o.midiport[0]).send([msgtype,key,velocity]);
 	}
 	
 	Model.prototype.onCloseMidi=function(){
