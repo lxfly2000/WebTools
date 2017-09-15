@@ -89,6 +89,9 @@
 			Model.prototype.onKeyNote=function(){};
 			alert("Sorry, 这个版本的 Chrome 似乎出了点问题，导致 MIDI 消息无法发出。");
 		}
+		var mididevname=o.midiport[0];
+		if(o.midiport[1].id==mididevname)mididevname=o.midiport[1].name;
+		document.querySelector("[name='InfoLine']").innerHTML+=" - 使用设备："+mididevname;
 	}
 	
 	Model.prototype.onMIDIFailure=function(msg){
