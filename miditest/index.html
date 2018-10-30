@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+		<title>MIDI</title>
+		<script src="midi.js"></script>
+		<link rel="icon" href="https://avatars0.githubusercontent.com/u/11847274"/>
+		<link rel="stylesheet" href="style.css"/>
+	</head>
+	<body>
+		<p id="InfoLine">Web MIDI</p>
+		<p>操作方法：点击按钮或按键盘任意键。</p>
+		<p>
+			<div class="SoundField">
+				<div class="TextSpin">八度调整（仅键盘）：<input type="number" class="SpinNum" id="Octave"/></div>
+				<div class="TextSpin">通道：<input type="number" class="SpinNum" id="ChannelNum"/></div>
+				<div class="TextSpin">音色选择：<input type="number" class="SpinNum" id="ProgramNum"/></div>
+				<div class="TextSpin">子音色选择（MSB）：<input type="number" class="SpinNum" id="BankMSB"/></div>
+				<div class="TextSpin">子音色选择（LSB）：<input type="number" class="SpinNum" id="BankLSB"/></div>
+			</div>
+		</p>
+		<p>
+		<div class="NoteButtons">
+			<input type="button" value="中音C" onclick="o.onSendNote(0x3c)"/>
+			<input type="button" value="中音D" onclick="o.onSendNote(0x3e)"/>
+			<input type="button" value="中音E" onclick="o.onSendNote(0x40)"/>
+			<input type="button" value="中音F" onclick="o.onSendNote(0x41)"/>
+			<input type="button" value="中音G" onclick="o.onSendNote(0x43)"/>
+			<input type="button" value="中音A" onclick="o.onSendNote(0x45)"/>
+			<input type="button" value="中音B" onclick="o.onSendNote(0x47)"/>
+		</div>
+		</p>
+	</body>
+	<script>
+		o=new MidiPlayer();
+	</script>
+</html>

@@ -1,0 +1,7 @@
+.SoundField .TextSpin .SpinNum{
+	width: 3em;
+}
+
+.SoundField .TextSpin{
+	display: inline-block;
+}

@@ -1,0 +1,16 @@
+.FreqEdit #freqSlider{
+	width: 100%;
+	max-width: 400px;
+}
+
+.FreqEdit .FreqEditNum #freqNum{
+	width: 5em;
+}
+
+.FreqEdit .FreqEditNum{
+	display: inline-block;
+}
+
+#waveShape{
+	width: 10em;
+}
