@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+	</head>
+	<body>
+		<p><input type="text" style="width:300px" placeholder="在此处输入文字……"/></p>
+		<select>
+			<option value="8">英文</option>
+			<option value="16">Unicode</option>
+		</select>
+		<p>
+			<input type="button" onclick="EncodeText()" value="加密文字"/>
+			<input type="button" onclick="DecodeText()" value="解密文字"/>
+		</p>
+		<script>
+var input=document.getElementsByTagName("input")[0];
+var encoding=document.getElementsByTagName("select")[0];
+function EncodeText(){
+	var cvt="　▐▌█";
+	var enc="";
+	for(var i=0;i<input.value.length;i++){
+		var c=input.value.charCodeAt(i);
+		for(var j=0;j<encoding.value/2;j++){
+			enc+=cvt.charAt((c>>(j*2))%4);
+		}
+	}
+	input.value=enc;
+}
+function DecodeText(){
+	var dec="";
+	var dic={"　":0,"▐":1,"▌":2,"█":3};
+	var a=0;
+	for(var i=0;i<input.value.length;i++){
+		a+=dic[input.value.charAt(i)]<<((i%(encoding.value/2))*2);
+		if(i%(encoding.value/2)==encoding.value/2-1){
+			dec+=String.fromCharCode(a);
+			a=0;
+		}
+	}
+	input.value=dec;
+}
+		</script>
+	</body>
+</html>

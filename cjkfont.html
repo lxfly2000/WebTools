@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>东亚字体比较</title>
+	</head>
+	<body>
+		<p>
+			<input type="text" id="textInput" placeholder="在这里输入一些文字……"/>
+			<input type="number" min="9" max="1152" id="fontSize" value="24"/>
+		</p>
+		国标：<p class="FontText" lang="zh-CN">国标字形</p>
+		台标：<p class="FontText" lang="zh-TW">台灣教育部標準字形</p>
+		日标：<p class="FontText" lang="ja">教科書体</p>
+		旧字形：<p class="FontText" lang="ko">傳統字形</p>
+	</body>
+	<script>
+		tagTexts=document.getElementsByClassName("FontText");
+		document.getElementById("textInput").addEventListener("input",function(e){
+			for(var i=0;i<tagTexts.length;i++){
+				tagTexts[i].textContent=document.getElementById("textInput").value;
+			}
+		});
+		document.getElementById("fontSize").addEventListener("input",function(e){
+			for(var i=0;i<tagTexts.length;i++){
+				tagTexts[i].style.fontSize=document.getElementById("fontSize").value+"pt";
+			}
+		});
+		for(var i=0;i<tagTexts.length;i++){
+			tagTexts[i].style.fontSize=document.getElementById("fontSize").value+"pt";
+			tagTexts[i].style.margin="0px";
+		}
+	</script>
+</html>
