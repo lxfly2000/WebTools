@@ -57,6 +57,7 @@
 						c1.height=cy;
 					}
 				}
+				SaveText(sd("te1").value);
 			}
 			function SaveCanvas(){
 				var c1=document.getElementById("canvas1");
@@ -82,6 +83,30 @@
 				aLink.href = URL.createObjectURL(blob);
 				aLink.dispatchEvent(event);
 			}
+			var lsLogged=false;
+			function CheckLocalStorage(){
+				if(!localStorage){
+					if(!lsLogged){
+						lsLogged=true;
+						console.log("当前浏览器不支持本地存储。");
+					}
+					return false;
+				}
+				return true;
+			}
+			function SaveText(str){
+				if(CheckLocalStorage()){
+					localStorage.setItem("te1",str);
+				}
+			}
+			function LoadText(){
+				if(CheckLocalStorage()){
+					sd("te1").value=localStorage.getItem("te1");
+				}
+			}
+			LoadText();
+		</script>
+		<script>
 		</script>
 	</body>
 </html>
