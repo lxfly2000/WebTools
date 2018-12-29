@@ -101,7 +101,7 @@
 			}
 			function LoadText(){
 				if(CheckLocalStorage()){
-					sd("te1").value=localStorage.getItem("te1");
+					sd("te1").value=localStorage.getItem("te1")||"";
 				}
 			}
 			LoadText();
