@@ -1,6 +1,7 @@
 ﻿<html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,user-scalable=no"/>
         <title>Typing</title>
         <style>
             .sw{
@@ -16,46 +17,53 @@
         <div class="sw" id="sSec">0</div>.
         <div class="sw" id="sMs">0</div>
         <input type="button" value="开始">
-        <input type="button" value="停止">
         <input type="button" value="重置">
         <script>
     var oMin=document.getElementById("sMin");
     var oSec=document.getElementById("sSec");
     var oMs=document.getElementById("sMs");
     var oStart=document.getElementsByTagName("input")[0];
-    var oStop=document.getElementsByTagName("input")[1];
-    var oReset=document.getElementsByTagName("input")[2];
+    var oReset=document.getElementsByTagName("input")[1];
     var minu= 0,sec=0,ms=0, timer=null;
     //开始计时
     oStart.onclick= function () {
-        clearInterval(timer);
-        timer=setInterval(function () {
-            ms++;
-            if(ms==100){
-                ms=0;
-                sec++;
-                oSec.textContent=sec;
-            }
-            oMs.textContent=ms;
-            if(sec==60){
-                sec=0;
-                oSec.textContent=sec;
-                minu++;
-                oMin.textContent=minu;
-            }
-        },10);
+        if(timer==null){
+            timer=setInterval(function () {
+                ms++;
+                if(ms==100){
+                    ms=0;
+                    sec++;
+                    oSec.textContent=sec;
+                }
+                oMs.textContent=ms;
+                if(sec==60){
+                    sec=0;
+                    oSec.textContent=sec;
+                    minu++;
+                    oMin.textContent=minu;
+                }
+            },10);
+            oStart.value="暂停";
+        }else{
+            clearInterval(timer);
+            timer=null;
+            oStart.value="开始";
+        }
     };
-    //暂停并且清空计时器
-    oStop.onclick= function () {
-        clearInterval(timer);
-    }
     //重置
     oReset.onclick= function () {
         oMin.textContent="0";
         oSec.textContent="0";
         oMs.textContent="0";
         minu=sec=ms=0;
-    }</script>
+    }
+    document.addEventListener("keydown",function(e){
+        if(document.getElementById("te1").value==""){
+            if(timer==null){
+                oStart.click();
+            }
+        }
+    });</script>
         <div>
             <textarea id="te1" style="width:600px;height:8em;max-width:100%;" placeholder="输入文本……"></textarea>
         </div>
