@@ -44,6 +44,7 @@ function changeId(interval){
 	window.linkDownload=document.getElementById("linkDownload");
 	window.linkUrl=document.getElementById("linkUrl");
 	window.emIcon=document.getElementById("emIcon");
+	window.frEm=document.getElementById("frEm");
 	
 	window.editId.addEventListener("change",function(){
 		if(isAutoUpdateChecked()){
@@ -79,9 +80,9 @@ function queryId(id){
 	SaveText(idStr);
 	window.imgPreview.src="https://imgcache.qq.com/club/item/parcel/img/parcel/"+idStr.substr(idStr.length-1,1)+"/"+id+"/286x166.jpg";
 	window.imgSplash.src="https://imgcache.qq.com/club/item/parcel/"+idStr.substr(idStr.length-1,1)+"/"+id+"/title.png";
-	/*var xhr=new XMLHttpRequest();
 	var qUrlCd="https://imgcache.qq.com/qqshow/admindata/comdata/vipEmoji_item_"+id;
 	var qUrl=qUrlCd+"/xydata.json";
+	/*var xhr=new XMLHttpRequest();
 	xhr.open("GET",qUrl,true);
 	xhr.onreadystatechange=function(){
 		if(xhr.readyState===4){
@@ -89,6 +90,7 @@ function queryId(id){
 		}
 	};
 	xhr.send(null);*/
+	window.frEm.src=qUrl;
 }
 
 function createImgTag(url,alt){
