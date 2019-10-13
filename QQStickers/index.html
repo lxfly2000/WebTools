@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>QQ表情浏览器</title>
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+		<link id="emIcon" rel="icon" href="https://avatars0.githubusercontent.com/u/11847274"/>
+	</head>
+
+	<body>
+		<p>表情ID：<input type="number" id="editId" style="width: 10em;">
+			<input type="button" value="转到" id="buttonGoto"></p>
+		<p><input type="button" value="上一个" id="buttonToPrev"><input type="button" value="下一个" id="buttonToNext">
+			<input type="checkbox" id="checkAutoUpdate"><label for="checkAutoUpdate">自动跳转</label></p>
+		<h1 id="textTitle">表情名称</h1>
+		<div>
+			<img id="imgPreview" style="max-width: 100%;" alt="表情预览"/>
+			<div id="textDesc">表情说明</div>
+		</div>
+		<img style="max-width: 100%;" id="imgSplash" alt="表情横幅"/>
+		<div id="listImages">
+			<!--<img alt="表情图片1"/>-->
+		</div>
+		<p>标签：<span id="textTags">表情标签</span></p>
+		<p><a id="linkDownload">下载表情</a>
+		<a id="linkUrl">在手机QQ中打开该表情</a></p>
+	</body>
+	<script src="main.js"></script>
+</html>
