@@ -6,9 +6,22 @@ function SaveText(str){
 	}
 }
 
+function GetQueryString(name){
+	"use strict";
+	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
+	if(r!=null){
+		return unescape(r[2]);
+	}
+	return null;
+}
+
 function LoadText(){
 	"use strict";
-	if(localStorage){
+	var emid=GetQueryString("emid");
+	if(emid!=null){
+		return emid;
+	}else if(localStorage){
 		return localStorage.getItem("te1")||"11449";
 	}
 }
