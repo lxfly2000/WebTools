@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>波洞转QQ动漫链接</title>
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+		<link rel="icon" href="https://avatars0.githubusercontent.com/u/11847274"/>
+	</head>
+	<body>
+		<p>
+			<input type="text" id="textInput" placeholder="请输入波洞链接……"/>
+		</p>
+		QQ动漫链接：<a id="qqdmUrl"></a>
+	</body>
+	<script>
+		tagUrl=document.getElementById("qqdmUrl");
+		qqdmUrlPre="https://cdn.vip.qq.com/club/client/comic/release/html/video.html?id=";
+		function parseBoodoId(url){
+			"use strict";
+			var re=/https\:\/\/boodo\.\qq\.com\/pages\/videoDetail\.html\?id=([A-Za-z0-9_\-]+)\.?/;
+			var m=url.match(re);
+			if(m!=null){
+				url=m[1];
+			}
+			return url;
+		}
+		document.getElementById("textInput").addEventListener("input",function(e){
+			"use strict";
+			var boodoId=parseBoodoId(document.getElementById("textInput").value);
+			if(boodoId!==null&&boodoId!==""){
+				boodoId=qqdmUrlPre+boodoId;
+			}
+			tagUrl.href=tagUrl.textContent=boodoId;
+		});
+	</script>
+</html>
