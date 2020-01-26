@@ -88,7 +88,8 @@ function changeId(interval){
 
 function queryId(id){
 	"use strict";
-	window.linkUrl.href="https://gxh.vip.qq.com/club/themes/mobile/bq/html/detail.html?id="+id;
+	//2019-12之前的链接为：https://gxh.vip.qq.com/club/themes/mobile/bq/html/detail.html?id={id}
+	window.linkUrl.href="https://zb.vip.qq.com/hybrid/emoticonmall/detail?id="+id;
 	var idStr=id.toString();
 	SaveText(idStr);
 	window.imgPreview.src="https://imgcache.qq.com/club/item/parcel/img/parcel/"+idStr.substr(idStr.length-1,1)+"/"+id+"/286x166.jpg";
