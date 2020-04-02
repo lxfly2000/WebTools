@@ -56,6 +56,7 @@ function changeId(interval){
 	window.textTags=document.getElementById("textTags");
 	window.linkDownload=document.getElementById("linkDownload");
 	window.linkUrl=document.getElementById("linkUrl");
+	window.linkUrlHybrid=document.getElementById("linkUrlHybrid");
 	window.emIcon=document.getElementById("emIcon");
 	window.frEm=document.getElementById("frEm");
 	
@@ -89,7 +90,8 @@ function changeId(interval){
 function queryId(id){
 	"use strict";
 	//2019-12之前的链接为：https://gxh.vip.qq.com/club/themes/mobile/bq/html/detail.html?id={id}
-	window.linkUrl.href="https://zb.vip.qq.com/hybrid/emoticonmall/detail?id="+id;
+	window.linkUrl.href="https://gxh.vip.qq.com/club/themes/mobile/bq/html/detail.html?id="+id;
+	window.linkUrlHybrid.href="https://zb.vip.qq.com/hybrid/emoticonmall/detail?id="+id;
 	var idStr=id.toString();
 	SaveText(idStr);
 	window.imgPreview.src="https://imgcache.qq.com/club/item/parcel/img/parcel/"+idStr.substr(idStr.length-1,1)+"/"+id+"/286x166.jpg";
