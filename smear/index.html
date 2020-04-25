@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+		<title>曲线激光</title>
+		<style>
+			.CanvasRoot
+			{
+				display: flex;
+				justify-content: center; /* 水平居中 */
+				align-items: center;     /* 垂直居中 */
+			}
+		</style>
+		<script type="text/javascript" src="particle.js"></script>
+	</head>
+	<body>
+		<div class="CanvasRoot">
+			<canvas id="canvas1" width="960px" height="600px">你的浏览器不支持 Canvas, 请换一个浏览器。</canvas><br/>
+		</div>
+		<input type="button" value="清除" onClick="Game.ClearParticles()"/>
+		<input id="checkSmear" type="checkbox" onClick="Game.ToggleSmear()"/>
+		<label for="checkSmear">残影</label>
+	</body>
+	<script type="text/javascript">
+		var Game=new Fireworks(document.querySelector("#canvas1"));
+	</script>
+</html>
