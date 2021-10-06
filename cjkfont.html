@@ -11,6 +11,7 @@
 			<input type="text" id="textInput" placeholder="在这里输入一些文字……"/>
 			<input type="number" min="9" max="1152" id="fontSize" value="24"/>
 		</p>
+		<p><input type="text" id="userFontFamily" placeholder="指定字体族……"/></p>
 		国标：<p class="FontText" lang="zh-CN">国标字形</p>
 		台标：<p class="FontText" lang="zh-TW">台灣教育部標準字形</p>
 		香港：<p class="FontText" lang="zh-HK">香港標準字形</p>
@@ -27,6 +28,11 @@
 		document.getElementById("fontSize").addEventListener("input",function(e){
 			for(var i=0;i<tagTexts.length;i++){
 				tagTexts[i].style.fontSize=document.getElementById("fontSize").value+"pt";
+			}
+		});
+		document.getElementById("userFontFamily").addEventListener("input",function(e){
+			for(var i=0;i<tagTexts.length;i++){
+				tagTexts[i].style.fontFamily=document.getElementById("userFontFamily").value;
 			}
 		});
 		for(var i=0;i<tagTexts.length;i++){
