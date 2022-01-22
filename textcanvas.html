@@ -68,7 +68,7 @@
 							for(var i=0;i<chs.length;i++){
 								if(chs[i]=="\n"){
 									cy+=singleheight;
-									cx=0;
+									cx=ox+borderwidth;
 								}else if(chs[i]=="\t"){
 									cx=cx-cx%(blankwidth*tabwidth)+blankwidth*tabwidth;
 								}else{
