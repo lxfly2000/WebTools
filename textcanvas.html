@@ -72,9 +72,9 @@
 									cy+=singleheight;
 									cx=ox+borderwidth;
 								}else if(chs[i]=="\t"){
-									cx-=borderwidth;
+									cx-=ox+borderwidth;
 									cx=cx-cx%(blankwidth*tabwidth)+blankwidth*tabwidth;
-									cx+=borderwidth;
+									cx+=ox+borderwidth;
 								}else{
 									if(step==1){
 										ccx.fillText(chs[i],cx,cy);
