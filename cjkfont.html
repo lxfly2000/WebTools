@@ -14,6 +14,7 @@
 		<p>
 			<input type="text" id="userFontFamily" placeholder="指定字体族……"/>
 			<input type="text" id="userFontWeight" placeholder="指定字重……"/>
+			<input type="checkbox" id="userFontItalic"/><label for="userFontItalic">斜体</label>
 		</p>
 		国标：<p class="FontText" lang="zh-CN">国标字形</p>
 		台标：<p class="FontText" lang="zh-TW">台灣教育部標準字形</p>
@@ -41,6 +42,11 @@
 		document.getElementById("userFontWeight").addEventListener("input",function(e){
 			for(var i=0;i<tagTexts.length;i++){
 				tagTexts[i].style.fontWeight=document.getElementById("userFontWeight").value;
+			}
+		});
+		document.getElementById("userFontItalic").addEventListener("change",function(e){
+			for(var i=0;i<tagTexts.length;i++){
+				tagTexts[i].style.fontStyle=document.getElementById("userFontItalic").checked?"italic":"";
 			}
 		});
 		for(var i=0;i<tagTexts.length;i++){
