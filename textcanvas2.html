@@ -11,7 +11,7 @@
         <input type="button" onClick="GenText()" value="转换图片"/>
 		<input type="button" onClick="SaveCanvas()" value="保存图片"/>
 		<input type="text" id="fontname" placeholder="字体名" value="SimSun"/>
-		<input type="text" id="fontweight" style="width:60px;" placeholder="字重" value=""/>
+		<input type="checkbox" id="fontweight" placeholder="字重"/><label for="fontweight">粗体</label>
 		<input type="number" id="fontsize" min="5" style="width:4em;" placeholder="字号" value="14"/>
 		<input type="number" id="borderwidth" min="0" style="width:4em;" placeholder="描边宽" value="0"/>
 		<br/>
@@ -23,7 +23,10 @@
 			function ConfigCanvas(textColor){
 				var ccx=sd("canvas1").getContext("2d");
 				ccx.fillStyle=textColor;
-				ccx.font=sd("fontweight").value+" "+sd("fontsize").value+"px "+"\""+sd("fontname").value+"\"";
+				ccx.font=sd("fontsize").value+"px "+"\""+sd("fontname").value+"\"";
+				if(sd("fontweight").checked){
+					ccx.font="Bold "+ccx.font;
+				}
 			}
 			function GenText(){
 				var c1=sd("canvas1");
@@ -51,7 +54,11 @@
 			}
 			function SaveCanvas(){
 				var c1=document.getElementById("canvas1");
-				downloadFile("text.png",c1.toDataURL());
+				var fn=sd("fontname").value;
+				if(/[Bb]old/.test(sd("canvas1").getContext("2d").font)){
+					fn+=" Bold";
+				}
+				downloadFile(fn+".png",c1.toDataURL());
 			}
 			function base64Img2Blob(code){
 				var parts = code.split(';base64,');
