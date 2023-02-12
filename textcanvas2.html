@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>文字转图片</title>
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+		<link rel="icon" href="https://avatars0.githubusercontent.com/u/11847274"/>
+	</head>
+	<body>
+		<canvas id="canvas1" width="200px" height="300px" style="border: 1px solid black"></canvas><br/>
+        <input type="button" onClick="GenText()" value="转换图片"/>
+		<input type="button" onClick="SaveCanvas()" value="保存图片"/>
+		<input type="text" id="fontname" placeholder="字体名" value="SimSun"/>
+		<input type="number" id="fontsize" min="5" style="width:4em;" placeholder="字号" value="14"/>
+		<input type="number" id="borderwidth" min="0" style="width:4em;" placeholder="描边宽" value="0"/>
+		<br/>
+		<textarea id="te1" style="width:600px;height:8em;max-width:100%;" placeholder="输入文本……"></textarea>
+		<script type="application/javascript">
+			function sd(name){
+				return document.getElementById(name);
+			}
+			function ConfigCanvas(textColor){
+				var ccx=sd("canvas1").getContext("2d");
+				ccx.fillStyle=textColor;
+				ccx.font=sd("fontsize").value+"px "+"\""+sd("fontname").value+"\"";
+			}
+			function GenText(){
+				var c1=sd("canvas1");
+				var ccx=c1.getContext("2d");
+				ccx.clearRect(0,0,c1.width,c1.height);
+				var chs=sd("te1").value;
+				var maxwidth=200;
+				var singleheight=parseInt(sd("fontsize").value);
+				var borderwidth=parseInt(sd("borderwidth").value);
+				ConfigCanvas("black");
+				maxwidth=Math.max(maxwidth,ccx.measureText(chs).width);
+				c1.width=maxwidth+2*borderwidth;
+				c1.height=singleheight+2*borderwidth;
+				ConfigCanvas(borderwidth==0?"black":"white");
+				ccx.textBaseline="top";
+				if(borderwidth>0){
+					ccx.strokeStyle="black";
+					ccx.lineWidth=borderwidth;
+					ccx.strokeText(chs,borderwidth,borderwidth);
+				}
+				ccx.fillText(chs,borderwidth,borderwidth);
+				SaveText(sd("te1").value);
+			}
+			function SaveCanvas(){
+				var c1=document.getElementById("canvas1");
+				downloadFile("text.png",c1.toDataURL());
+			}
+			function base64Img2Blob(code){
+				var parts = code.split(';base64,');
+				var contentType = parts[0].split(':')[1];
+				var raw = window.atob(parts[1]);
+				var rawLength = raw.length;
+				var uInt8Array = new Uint8Array(rawLength);
+				for (var i = 0; i < rawLength; ++i) {
+					uInt8Array[i] = raw.charCodeAt(i);
+				}
+				return new Blob([uInt8Array], {type: contentType});
+			}
+			function downloadFile(fileName, content){
+				var aLink = document.createElement('a');
+				var blob = base64Img2Blob(content); //new Blob([content]);
+				var event = document.createEvent('MouseEvents');
+				event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+				aLink.download = fileName;
+				aLink.href = URL.createObjectURL(blob);
+				aLink.dispatchEvent(event);
+			}
+			var lsLogged=false;
+			function CheckLocalStorage(){
+				if(!localStorage){
+					if(!lsLogged){
+						lsLogged=true;
+						console.log("当前浏览器不支持本地存储。");
+					}
+					return false;
+				}
+				return true;
+			}
+			function SaveText(str){
+				if(CheckLocalStorage()){
+					localStorage.setItem("te1",str);
+				}
+			}
+			function LoadText(){
+				if(CheckLocalStorage()){
+					sd("te1").value=localStorage.getItem("te1")||"";
+				}
+			}
+			LoadText();
+		</script>
+		<script>
+		</script>
+	</body>
+</html>
