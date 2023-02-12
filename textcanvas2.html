@@ -5,6 +5,12 @@
 		<title>文字转图片</title>
 		<meta name="viewport" content="width=device-width,user-scalable=no"/>
 		<link rel="icon" href="https://avatars0.githubusercontent.com/u/11847274"/>
+		<style>
+			@font-face {
+				font-family: "Adobe NotDef";
+				src: url("AND-Regular.otf");
+			}
+		</style>
 	</head>
 	<body>
 		<canvas id="canvas1" width="200px" height="300px" style="border: 1px solid black"></canvas><br/>
@@ -23,7 +29,7 @@
 			function ConfigCanvas(textColor){
 				var ccx=sd("canvas1").getContext("2d");
 				ccx.fillStyle=textColor;
-				ccx.font=sd("fontsize").value+"px "+"\""+sd("fontname").value+"\"";
+				ccx.font=sd("fontsize").value+"px "+"\""+sd("fontname").value+"\",\"Adobe NotDef\"";
 				if(sd("fontweight").checked){
 					ccx.font="Bold "+ccx.font;
 				}
