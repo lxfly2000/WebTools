@@ -11,6 +11,7 @@
         <input type="button" onClick="GenText()" value="转换图片"/>
 		<input type="button" onClick="SaveCanvas()" value="保存图片"/>
 		<input type="text" id="fontname" placeholder="字体名" value="SimSun"/>
+		<input type="text" id="fontweight" style="width:60px;" placeholder="字重" value=""/>
 		<input type="number" id="fontsize" min="5" style="width:4em;" placeholder="字号" value="14"/>
 		<input type="number" id="borderwidth" min="0" style="width:4em;" placeholder="描边宽" value="0"/>
 		<br/>
@@ -22,7 +23,7 @@
 			function ConfigCanvas(textColor){
 				var ccx=sd("canvas1").getContext("2d");
 				ccx.fillStyle=textColor;
-				ccx.font=sd("fontsize").value+"px "+"\""+sd("fontname").value+"\"";
+				ccx.font=sd("fontweight").value+" "+sd("fontsize").value+"px "+"\""+sd("fontname").value+"\"";
 			}
 			function GenText(){
 				var c1=sd("canvas1");
@@ -37,15 +38,15 @@
 				var mtc=ccx.measureText(chs);
 				maxwidth=Math.max(maxwidth,mtc.width);
 				c1.width=maxwidth+2*borderwidth;
-				c1.height=mtc.fontBoundingBoxDescent+2*borderwidth;
+				c1.height=mtc.fontBoundingBoxAscent+mtc.fontBoundingBoxDescent+2*borderwidth;
 				ConfigCanvas(borderwidth==0?"black":"white");
 				ccx.textBaseline="top";
 				if(borderwidth>0){
 					ccx.strokeStyle="black";
 					ccx.lineWidth=borderwidth;
-					ccx.strokeText(chs,borderwidth,borderwidth);
+					ccx.strokeText(chs,borderwidth,borderwidth+mtc.fontBoundingBoxAscent);
 				}
-				ccx.fillText(chs,borderwidth,borderwidth);
+				ccx.fillText(chs,borderwidth,borderwidth+mtc.fontBoundingBoxAscent);
 				SaveText(sd("te1").value);
 			}
 			function SaveCanvas(){
