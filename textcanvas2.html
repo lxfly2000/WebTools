@@ -33,9 +33,11 @@
 				var singleheight=parseInt(sd("fontsize").value);
 				var borderwidth=parseInt(sd("borderwidth").value);
 				ConfigCanvas("black");
-				maxwidth=Math.max(maxwidth,ccx.measureText(chs).width);
+				ccx.textBaseline="top";
+				var mtc=ccx.measureText(chs);
+				maxwidth=Math.max(maxwidth,mtc.width);
 				c1.width=maxwidth+2*borderwidth;
-				c1.height=singleheight+2*borderwidth;
+				c1.height=mtc.fontBoundingBoxDescent+2*borderwidth;
 				ConfigCanvas(borderwidth==0?"black":"white");
 				ccx.textBaseline="top";
 				if(borderwidth>0){
